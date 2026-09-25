@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Master Learning Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo"><i class="fa-brands fa-python"></i> Python Portal</div>
+        <div class="search-bar">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search Python topics...">
+        </div>
+        <div class="header-controls">
+            <button id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+            <button id="mobileMenuBtn" class="mobile-only"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Overall Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="overallProgress"></div>
+        <span id="progressText">0% Completed</span>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav id="sidebar">
+            <ul id="topicMenu"></ul>
+            <div class="assessment-menu">
+                <button id="finalAssessmentBtn"><i class="fa-solid fa-certificate"></i> Final Assessment</button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main id="mainContent">
+            <div id="contentArea">
+                <h1 id="topicTitle">Welcome to Python Master</h1>
+                <div id="topicNotes">Select a topic from the left menu to start learning.</div>
+                
+                <!-- Code & Syntax Area -->
+                <div id="codeSection" style="display: none;">
+                    <div class="code-header">
+                        <span><i class="fa-solid fa-code"></i> Syntax & Example</span>
+                        <button id="copyCodeBtn"><i class="fa-regular fa-copy"></i> Copy</button>
+                    </div>
+                    <pre><code id="topicCode"></code></pre>
+                    <div class="output-box">
+                        <strong>Output:</strong>
+                        <div id="topicOutput"></div>
+                    </div>
+                </div>
+
+                <!-- Coding Questions Area -->
+                <div id="codingQuestionsSection" style="display: none;">
+                    <h3><i class="fa-solid fa-laptop-code"></i> Coding Questions to Try</h3>
+                    <div id="codingQuestionsContainer"></div>
+                </div>
+
+                <!-- MCQ Quiz Area -->
+                <div id="quizSection" style="display: none;">
+                    <h3><i class="fa-solid fa-clipboard-question"></i> MCQ Quiz</h3>
+                    <div id="quizContainer"></div>
+                    <div id="topicScore" class="score-display"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

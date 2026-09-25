@@ -1,0 +1,185 @@
+{
+  "topics": [
+    {
+      "id": "setup-vars",
+      "title": "1. Setup, Variables & Data Types",
+      "content": "<p><strong>Python</strong> is a dynamically typed language, meaning you do not need to declare variable types explicitly.</p><ul><li><strong>Type Casting:</strong> You can convert data types using functions like <code>int()</code>, <code>float()</code>, and <code>str()</code>.</li><li><strong>Multiple Assignment:</strong> Python allows assigning values to multiple variables in one line.</li><li><strong>Memory:</strong> Variables are references to objects in memory. Use <code>id()</code> to see the memory address.</li></ul>",
+      "code": "# Multiple assignment\nx, y, z = 10, 3.14, \"Python\"\n\n# Type Casting\nage = \"25\"\nprint(type(age)) # String\nage_int = int(age)\nprint(type(age_int)) # Integer\n\n# Dynamic typing\nvar = 100\nvar = \"Now I'm a string\"\nprint(var)",
+      "output": "<class 'str'>\n<class 'int'>\nNow I'm a string",
+      "coding_questions": [
+        "Create three variables (a string, an integer, and a float) in a single line.",
+        "Take a string variable `num_str = '50'`, cast it to an integer, add 20 to it, and print the result.",
+        "Use the `type()` function to check the data type of `[1, 2, 3]` and `(1, 2, 3)`."
+      ],
+      "quiz": [
+        { "question": "Which of the following is a valid variable name?", "options": ["1_name", "name_1", "-name", "name!"], "answer": 1 },
+        { "question": "What function is used to convert a string to a float?", "options": ["float()", "flt()", "decimal()", "cast_float()"], "answer": 0 },
+        { "question": "What data type is the value True?", "options": ["String", "Integer", "Boolean", "Float"], "answer": 2 }
+      ]
+    },
+    {
+      "id": "operators-strings",
+      "title": "2. Operators & String Operations",
+      "content": "<p>Strings are heavily used in Python and come with powerful built-in methods.</p><ul><li><strong>F-Strings:</strong> Prefix a string with <code>f</code> to embed variables directly using <code>{}</code>.</li><li><strong>String Methods:</strong> Use <code>.strip()</code> to remove whitespace, <code>.split()</code> to turn a string into a list, and <code>.replace()</code> to swap characters.</li><li><strong>Logical Operators:</strong> <code>and</code>, <code>or</code>, <code>not</code> combine conditional statements.</li><li><strong>Membership Operators:</strong> <code>in</code>, <code>not in</code> check if a sequence is present in an object.</li></ul>",
+      "code": "# F-Strings\nname = \"Bob\"\nprint(f\"Hello {name}, 5 + 5 is {5+5}\")\n\n# String Methods\ntext = \"  Python is awesome!  \"\nclean_text = text.strip()\nprint(clean_text.replace(\"awesome\", \"powerful\"))\n\n# Membership & Logical\nprint(\"Py\" in text and len(name) > 2)",
+      "output": "Hello Bob, 5 + 5 is 10\nPython is powerful!\nTrue",
+      "coding_questions": [
+        "Write a program to reverse a string using slicing `[::-1]`.",
+        "Take a sentence 'Data Science is fun' and use `.split()` to convert it into a list of words.",
+        "Use an f-string to print 'My name is [Name] and I am [Age] years old'."
+      ],
+      "quiz": [
+        { "question": "What is the output of 10 // 3?", "options": ["3.33", "3", "1", "0"], "answer": 1 },
+        { "question": "Which method removes whitespace from the beginning and end of a string?", "options": ["remove()", "strip()", "trim()", "clean()"], "answer": 1 },
+        { "question": "What does 'a' in 'apple' evaluate to?", "options": ["True", "False", "Error", "None"], "answer": 0 }
+      ]
+    },
+    {
+      "id": "lists-tuples",
+      "title": "3. Lists & Tuples",
+      "content": "<p>Lists and Tuples are fundamental data structures.</p><ul><li><strong>List Methods:</strong> <code>.insert(index, item)</code> adds at a specific position. <code>.pop()</code> removes and returns the last item. <code>.sort()</code> sorts the list in place.</li><li><strong>Nested Lists:</strong> Lists can contain other lists, creating matrices (2D arrays).</li><li><strong>Tuple Packing/Unpacking:</strong> You can assign a tuple of variables to a tuple of values instantly (e.g., <code>a, b = (1, 2)</code>).</li></ul>",
+      "code": "# List Operations\nnos = [3, 1, 4, 2]\nnos.sort()\nnos.insert(1, 99)\npopped = nos.pop()\nprint(f\"List: {nos}, Popped: {popped}\")\n\n# Tuple Unpacking\nperson = (\"Alice\", 25, \"Engineer\")\nname, age, job = person\nprint(f\"{name} is an {job}\")",
+      "output": "List: [1, 99, 2, 3], Popped: 4\nAlice is an Engineer",
+      "coding_questions": [
+        "Create a list of 5 numbers, sort it in descending order, and print it.",
+        "Given the nested list `matrix = [[1, 2], [3, 4]]`, extract and print the number 4.",
+        "Unpack the tuple `colors = ('red', 'green', 'blue')` into three variables and print the second one."
+      ],
+      "quiz": [
+        { "question": "Which method adds an element to a specific index in a list?", "options": ["append()", "push()", "insert()", "add()"], "answer": 2 },
+        { "question": "Are Python lists mutable?", "options": ["Yes", "No", "Only if empty", "Depends on OS"], "answer": 0 },
+        { "question": "What happens if you try to change a tuple element (e.g., t[0] = 1)?", "options": ["It changes successfully", "TypeError", "SyntaxError", "It creates a new tuple"], "answer": 1 }
+      ]
+    },
+    {
+      "id": "sets-dicts",
+      "title": "4. Sets, Dictionaries & Nested Structures",
+      "content": "<p><strong>Sets</strong> handle mathematical set operations (union, intersection). <strong>Dictionaries</strong> provide extremely fast key lookups.</p><ul><li><strong>Set Operations:</strong> Use <code>|</code> for Union (combines sets) and <code>&amp;</code> for Intersection (finds common items).</li><li><strong>Dictionary Methods:</strong> <code>.keys()</code> gets all keys, <code>.values()</code> gets all values, <code>.items()</code> gets key-value pairs. <code>.get(key, default)</code> safely fetches a value without throwing an error if it doesn't exist.</li></ul>",
+      "code": "# Sets\nset_A = {1, 2, 3}\nset_B = {3, 4, 5}\nprint(\"Union:\", set_A | set_B)\nprint(\"Intersection:\", set_A & set_B)\n\n# Dictionaries\ncar = {\"brand\": \"Ford\", \"model\": \"Mustang\"}\nprint(car.get(\"year\", \"Year not found\"))\n\nfor key, val in car.items():\n    print(f\"{key}: {val}\")",
+      "output": "Union: {1, 2, 3, 4, 5}\nIntersection: {3}\nYear not found\nbrand: Ford\nmodel: Mustang",
+      "coding_questions": [
+        "Find the common elements between `list1 = [1,2,3,4]` and `list2 = [3,4,5,6]` by converting them to sets.",
+        "Create a dictionary of a student's grades. Safely try to access their 'Math' grade using `.get()`, defaulting to 0 if it doesn't exist.",
+        "Iterate through a dictionary and print only the keys."
+      ],
+      "quiz": [
+        { "question": "Which collection does not allow duplicate members?", "options": ["List", "Tuple", "Dictionary", "Set"], "answer": 3 },
+        { "question": "What does the dictionary .items() method return?", "options": ["Only keys", "Only values", "Key-value tuples", "A list of strings"], "answer": 2 },
+        { "question": "Which operator is used for Set Intersection?", "options": ["|", "&", "+", "-"], "answer": 1 }
+      ]
+    },
+    {
+      "id": "conditions-loops",
+      "title": "5. Conditions & Loops",
+      "content": "<p>Control flow structures allow your program to make decisions and repeat tasks.</p><ul><li><strong>Conditional Statements (if/elif/else):</strong> <code>if</code> evaluates a condition. <code>elif</code> (else if) checks multiple conditions sequentially. <code>else</code> acts as a catch-all if no previous conditions are met.</li><li><strong>Truthiness:</strong> In Python, empty sequences (like <code>[]</code>, <code>\"\"</code>), <code>0</code>, and <code>None</code> evaluate to <code>False</code>. Almost everything else evaluates to <code>True</code>.</li><li><strong>For Loops:</strong> Designed to iterate over a sequence (like a list, tuple, dictionary, or string). It runs a block of code for each item automatically.</li><li><strong>While Loops:</strong> Executes a block of code continuously as long as a specified condition remains <code>True</code>. Be careful of infinite loops!</li><li><strong>Nested Loops:</strong> A loop inside a loop. The \"inner loop\" will be fully executed one time for every single iteration of the \"outer loop\".</li><li><strong>Break & Continue:</strong> <code>break</code> exits the loop entirely. <code>continue</code> skips the rest of the current iteration and instantly moves to the next one.</li><li><strong>While-Else:</strong> Python loops can have an <code>else</code> block that triggers only if the loop finishes normally <em>without</em> hitting a <code>break</code> statement.</li></ul>",
+      "code": "# If/Elif/Else & Truthiness\nname = \"\"\nif not name:\n    print(\"String is empty! (Falsy)\")\n\n# Nested Loops\nfor i in range(1, 3):       # Outer loop\n    for j in ['A', 'B']:    # Inner loop\n        print(f\"{i}{j}\")\n\n# Continue and Break\nfor i in range(5):\n    if i == 1:\n        continue # Skips 1\n    if i == 3:\n        break    # Stops at 3\n    print(f\"Loop: {i}\")",
+      "output": "String is empty! (Falsy)\n1A\n1B\n2A\n2B\nLoop: 0\nLoop: 2",
+      "coding_questions": [
+        "Write a loop that prints numbers 1 to 10, but skips numbers divisible by 3 using `continue`.",
+        "Create a `while` loop that asks for user input (mock it with a variable) and breaks when the input is 'exit'."
+      ],
+      "quiz": [
+        { "question": "Which keyword stops a loop completely?", "options": ["stop", "break", "continue", "exit"], "answer": 1 },
+        { "question": "What does 'continue' do in a loop?", "options": ["Stops the loop", "Restarts the script", "Skips to the next iteration", "Pauses execution"], "answer": 2 },
+        { "question": "Which of the following evaluates to False in Python?", "options": ["'False'", "1", "[] (an empty list)", "-1"], "answer": 2 }
+      ]
+    },
+    {
+      "id": "functions",
+      "title": "6. Functions",
+      "content": "<p>Functions organize code into modular blocks.</p><ul><li><strong>Default Arguments:</strong> Provide fallback values for parameters (e.g., <code>def greet(name=\"User\")</code>).</li><li><strong>*args and **kwargs:</strong> <code>*args</code> allows passing a variable number of non-keyword arguments (as a tuple). <code>**kwargs</code> allows passing a variable number of keyword arguments (as a dictionary).</li><li><strong>Variable Scope:</strong> Variables inside a function are <em>local</em>. Use the <code>global</code> keyword to modify a global variable inside a function.</li></ul>",
+      "code": "# *args (Multiple arguments)\ndef add_all(*args):\n    return sum(args)\n\nprint(\"Sum:\", add_all(1, 2, 3, 4))\n\n# **kwargs (Keyword arguments)\ndef profile(**kwargs):\n    for key, val in kwargs.items():\n        print(f\"{key}: {val}\")\n\nprofile(name=\"Alice\", role=\"Admin\")",
+      "output": "Sum: 10\nname: Alice\nrole: Admin",
+      "coding_questions": [
+        "Create a function `find_max(*args)` that takes any number of integers and returns the highest one.",
+        "Write a function `build_profile` that accepts a first name, last name, and `**kwargs` for additional info, returning a complete dictionary.",
+        "Demonstrate the difference between a local variable and a global variable in a script."
+      ],
+      "quiz": [
+        { "question": "What data structure is used to hold *args?", "options": ["List", "Dictionary", "Tuple", "Set"], "answer": 2 },
+        { "question": "What data structure is used to hold **kwargs?", "options": ["List", "Dictionary", "Tuple", "Set"], "answer": 1 },
+        { "question": "How do you modify a global variable inside a function?", "options": ["Just assign a new value", "Use the 'global' keyword", "Use 'this.variable'", "It is impossible"], "answer": 1 }
+      ]
+    },
+    {
+      "id": "file-lambda",
+      "title": "7. File Handling, Comprehensions, Lambda",
+      "content": "<p>Advanced data manipulation and file I/O.</p><ul><li><strong>List/Dict Comprehensions:</strong> Pythonic way to generate collections on a single line.</li><li><strong>Map & Filter:</strong> <code>map()</code> applies a function to all items; <code>filter()</code> extracts items that return True for a condition. Often combined with Lambdas.</li><li><strong>Context Managers:</strong> Using <code>with open()</code> ensures the file closes automatically, even if an error occurs. Modes: <code>r</code> (read), <code>w</code> (write), <code>a</code> (append).</li></ul>",
+      "code": "# Dict Comprehension\nsquares_dict = {x: x**2 for x in range(3)}\nprint(\"Dict:\", squares_dict)\n\n# Map and Filter with Lambda\nnums = [1, 2, 3, 4, 5]\nevens = list(filter(lambda x: x % 2 == 0, nums))\ndoubled = list(map(lambda x: x * 2, evens))\nprint(\"Filtered Evens & Doubled:\", doubled)\n\n# File handling syntax (conceptual)\n# with open('data.txt', 'r') as f:\n#     lines = f.readlines()",
+      "output": "Dict: {0: 0, 1: 1, 2: 4}\nFiltered Evens & Doubled: [4, 8]",
+      "coding_questions": [
+        "Write a dictionary comprehension that maps numbers 1-5 to their cubes.",
+        "Use `filter()` and a lambda function to extract all words longer than 4 characters from a list of strings.",
+        "Write a script that appends the text 'New Session Started' to a file named 'log.txt'."
+      ],
+      "quiz": [
+        { "question": "What is a lambda function?", "options": ["A multi-line function", "An anonymous function", "A class method", "A file handler"], "answer": 1 },
+        { "question": "Which function is used to apply a lambda to every item in a list?", "options": ["filter()", "apply()", "map()", "reduce()"], "answer": 2 },
+        { "question": "Why is it best to use 'with open()' for files?", "options": ["It reads faster", "It auto-closes the file", "It encrypts the data", "It prevents deleting"], "answer": 1 }
+      ]
+    },
+    {
+      "id": "exception-handling",
+      "title": "8. Exception Handling",
+      "content": "<p>Robust programs handle unexpected errors gracefully.</p><ul><li><strong>Multiple Excepts:</strong> You can catch different exceptions and handle them differently.</li><li><strong>Raise:</strong> Use the <code>raise</code> keyword to intentionally trigger an exception based on your own logic.</li><li><strong>Custom Exceptions:</strong> You can create your own error types by inheriting from the built-in <code>Exception</code> class.</li></ul>",
+      "code": "def check_age(age):\n    if age < 0:\n        raise ValueError(\"Age cannot be negative!\")\n    return age\n\ntry:\n    check_age(-5)\nexcept ValueError as e:\n    print(f\"Caught an error: {e}\")\nexcept TypeError:\n    print(\"Invalid data type!\")\nfinally:\n    print(\"Verification attempt finished.\")",
+      "output": "Caught an error: Age cannot be negative!\nVerification attempt finished.",
+      "coding_questions": [
+        "Write a function that divides two numbers. Catch `ZeroDivisionError` and `TypeError` using multiple except blocks.",
+        "Write a script that asks for a password and uses `raise Exception` if the password is less than 6 characters long.",
+        "Create a custom Exception class named `InvalidEmailError` and raise it if an email string doesn't contain an '@'."
+      ],
+      "quiz": [
+        { "question": "Which keyword manually triggers an exception?", "options": ["throw", "catch", "raise", "error"], "answer": 2 },
+        { "question": "How do you capture the error message into a variable?", "options": ["except Error = e:", "except Error as e:", "catch Error(e):", "except e = Error:"], "answer": 1 },
+        { "question": "Which block executes no matter what?", "options": ["try", "except", "finally", "catch"], "answer": 2 }
+      ]
+    },
+    {
+      "id": "oops",
+      "title": "9. Object-Oriented Programming (OOPS)",
+      "content": "<p>Object-Oriented Programming (OOP) is a paradigm based on the concept of \"objects\", which bundle data (attributes) and behaviors (methods) together. It follows 4 core pillars:</p><ul><li><strong>Classes vs. Objects:</strong> A <code>class</code> is a blueprint or template (e.g., 'Car'). An <code>object</code> is a specific instance created from that blueprint (e.g., 'My Red Toyota').</li><li><strong>The <code>self</code> Parameter:</strong> Represents the specific instance of the class. It binds the attributes with the given arguments and must be the first parameter of any instance method.</li><li><strong>Inheritance:</strong> A way to form new child classes using parent classes that have already been defined. It promotes massive code reusability.</li><li><strong>Encapsulation:</strong> Hiding internal states and requiring all interaction to be performed through an object's methods. In Python, prefixing an attribute with double underscores (<code>__</code>) makes it \"private\", preventing direct external access.</li><li><strong>Abstraction:</strong> Hiding complex underlying implementation details and showing only the essential features of the object to the user.</li><li><strong>Magic/Dunder Methods:</strong> Methods surrounded by double underscores like <code>__init__</code> (constructor, called when creating an object) and <code>__str__</code> (controls what prints when you print the object).</li></ul>",
+      "code": "class BankAccount:\n    bank_name = \"Global Bank\" # Class variable (shared)\n\n    def __init__(self, owner, balance):\n        self.owner = owner       # Public Instance Variable\n        self.__balance = balance # Private Instance Variable\n\n    def __str__(self):\n        return f\"{self.owner}'s Account\"\n\n    def get_balance(self):\n        # Public method to access private data safely\n        return self.__balance\n\nacc = BankAccount(\"Alice\", 1000)\nprint(acc)\nprint(f\"Bank: {BankAccount.bank_name}\")\nprint(\"Balance:\", acc.get_balance())\n# print(acc.__balance) # ERROR: Cannot access private attribute",
+      "output": "Alice's Account\nBank: Global Bank\nBalance: 1000",
+      "coding_questions": [
+        "Create a `Book` class with a `__init__` constructor and a `__str__` method that returns 'Title by Author'.",
+        "Add a private attribute `__salary` to an `Employee` class and create a getter method to access it safely.",
+        "Create a class variable `employee_count` that increments every time the `__init__` method is called."
+      ],
+      "quiz": [
+        { "question": "What is the primary function used to initialize class properties?", "options": ["__start__", "__init__", "__main__", "init()"], "answer": 1 },
+        { "question": "How do you indicate that an attribute should be private in Python?", "options": ["Prefix with 'private'", "Prefix with double underscore '__'", "Suffix with '__'", "Use the @private decorator"], "answer": 1 },
+        { "question": "What method controls how an object is formatted when you use print() on it?", "options": ["__print__", "__text__", "__str__", "__output__"], "answer": 2 }
+      ]
+    },
+    {
+      "id": "polymorphism-json-apis",
+      "title": "10. Polymorphism, JSON & APIs",
+      "content": "<p>Integrating systems and modeling flexible behaviors.</p><ul><li><strong>Polymorphism (Method Overriding):</strong> A child class can provide a specific implementation of a method that is already provided by its parent.</li><li><strong>JSON:</strong> <code>json.loads()</code> parses a JSON string to a Python Dict. <code>json.dumps()</code> converts a Dict back to a JSON string.</li><li><strong>APIs:</strong> The external <code>requests</code> library is the standard for making HTTP GET/POST requests to REST APIs.</li></ul>",
+      "code": "import json\n\n# Polymorphism Example\nclass Bird:\n    def speak(self): return \"Chirp\"\nclass Duck(Bird):\n    def speak(self): return \"Quack\" # Overriding\n\nanimals = [Bird(), Duck()]\nfor a in animals:\n    print(a.speak())\n\n# JSON Dumping (Dict to String)\nuser = {\"name\": \"Alice\", \"active\": True}\njson_str = json.dumps(user, indent=2)\nprint(\"\\nJSON Output:\\n\" + json_str)",
+      "output": "Chirp\nQuack\n\nJSON Output:\n{\n  \"name\": \"Alice\",\n  \"active\": true\n}",
+      "coding_questions": [
+        "Create a parent class `Shape` with a method `area()`. Create two child classes `Square` and `Circle` that override `area()` with their specific formulas.",
+        "Create a complex Python dictionary containing a list, and convert it to a formatted JSON string using `json.dumps(data, indent=4)`.",
+        "Write a theoretical function that uses `requests.get('url')` and returns the `.json()` response of the request."
+      ],
+      "quiz": [
+        { "question": "Which function converts a Python Dictionary into a JSON String?", "options": ["json.parse()", "json.loads()", "json.dumps()", "json.stringify()"], "answer": 2 },
+        { "question": "What does Polymorphism allow you to do?", "options": ["Hide variables", "Use the same method name for different types", "Import external libraries", "Parse API data"], "answer": 1 },
+        { "question": "Which external library is standard for making API calls in Python?", "options": ["http", "fetch", "requests", "api_caller"], "answer": 2 }
+      ]
+    }
+  ],
+  "assessment": [
+    { "question": "Which of these is NOT a core Python data type?", "options": ["List", "Dictionary", "Tuple", "Class"], "answer": 3 },
+    { "question": "What is the output of print(2 ** 3)?", "options": ["6", "8", "9", "Error"], "answer": 1 },
+    { "question": "Which method adds an item to the end of a list?", "options": ["add()", "insert()", "append()", "extend()"], "answer": 2 },
+    { "question": "What does JSON.loads() do?", "options": ["Loads a file", "Converts Python object to JSON string", "Converts JSON string to Python dictionary", "Installs a library"], "answer": 2 },
+    { "question": "Which keyword handles exceptions?", "options": ["catch", "except", "error", "handle"], "answer": 1 },
+    { "question": "What does the 'continue' keyword do inside a loop?", "options": ["Stops the program completely", "Exits the loop immediately", "Skips the rest of the current iteration", "Restarts the loop from 0"], "answer": 2 },
+    { "question": "Which bracket type is used to define a Dictionary?", "options": ["()", "[]", "{}", "<>"], "answer": 2 },
+    { "question": "What is the purpose of the __init__ method in a class?", "options": ["To print the object", "To initialize object attributes", "To delete the object", "To import a module"], "answer": 1 },
+    { "question": "Which symbol is used for an f-string?", "options": ["$string", "f\"string\"", "&string", "@string"], "answer": 1 },
+    { "question": "How do you open a file for appending?", "options": ["open('file.txt', 'r')", "open('file.txt', 'a')", "open('file.txt', 'w')", "open('file.txt', 'add')"], "answer": 1 }
+  ]
+}
