@@ -154,8 +154,8 @@ document.getElementById('mobileMenuBtn').addEventListener('click', () => {
 });
 
 document.getElementById('finalAssessmentBtn').addEventListener('click', () => {
-    document.getElementById('topicTitle').innerText = "Final Python Assessment";
-    document.getElementById('topicNotes').innerHTML = "<p>Test your overall Python knowledge!</p>";
+    document.getElementById('topicTitle').innerText = "Final Excel Assessment";
+    document.getElementById('topicNotes').innerHTML = "<p>Test your overall Excel knowledge!</p>";
     document.getElementById('codeSection').style.display = 'none';
     document.getElementById('codingQuestionsSection').style.display = 'none';
     document.querySelectorAll('#topicMenu li').forEach(li => li.classList.remove('active'));
