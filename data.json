@@ -1,185 +1,221 @@
 {
   "topics": [
     {
-      "id": "setup-vars",
-      "title": "1. Setup, Variables & Data Types",
-      "content": "<p><strong>Python</strong> is a dynamically typed language, meaning you do not need to declare variable types explicitly.</p><ul><li><strong>Type Casting:</strong> You can convert data types using functions like <code>int()</code>, <code>float()</code>, and <code>str()</code>.</li><li><strong>Multiple Assignment:</strong> Python allows assigning values to multiple variables in one line.</li><li><strong>Memory:</strong> Variables are references to objects in memory. Use <code>id()</code> to see the memory address.</li></ul>",
-      "code": "# Multiple assignment\nx, y, z = 10, 3.14, \"Python\"\n\n# Type Casting\nage = \"25\"\nprint(type(age)) # String\nage_int = int(age)\nprint(type(age_int)) # Integer\n\n# Dynamic typing\nvar = 100\nvar = \"Now I'm a string\"\nprint(var)",
-      "output": "<class 'str'>\n<class 'int'>\nNow I'm a string",
+      "id": "cell-referencing",
+      "title": "1. Basic Formulas & Cell Referencing",
+      "content": "<p>Understanding cell references is the foundation of Excel, and a guaranteed interview question.</p><ul><li><strong>Relative Reference (A1):</strong> Changes when you copy the formula to another cell.</li><li><strong>Absolute Reference ($A$1):</strong> Locked entirely. Does not change when dragged down or across. Press <code>F4</code> to toggle.</li><li><strong>Mixed Reference ($A1 or A$1):</strong> Locks either the column ($A) or the row ($1). Crucial for creating 2D matrices like multiplication tables.</li></ul>",
+      "code": "Relative: =A1 * B1\nAbsolute: =A1 * $B$1\nMixed (Lock Row): =A1 * B$1\nMixed (Lock Col): =$A1 * B1\n\nShortcut: Press F4 while editing a formula to cycle through lock modes.",
+      "output": "Relative changes to A2*B2 when dragged down.\nAbsolute keeps multiplying by B1.",
       "coding_questions": [
-        "Create three variables (a string, an integer, and a float) in a single line.",
-        "Take a string variable `num_str = '50'`, cast it to an integer, add 20 to it, and print the result.",
-        "Use the `type()` function to check the data type of `[1, 2, 3]` and `(1, 2, 3)`."
+        "Write a formula in C2 that multiplies A2 by a fixed tax rate in $D$1, so it can be dragged down successfully.",
+        "Explain to the interviewer how a mixed reference like $A2 works when dragged to the right vs dragged down."
       ],
       "quiz": [
-        { "question": "Which of the following is a valid variable name?", "options": ["1_name", "name_1", "-name", "name!"], "answer": 1 },
-        { "question": "What function is used to convert a string to a float?", "options": ["float()", "flt()", "decimal()", "cast_float()"], "answer": 0 },
-        { "question": "What data type is the value True?", "options": ["String", "Integer", "Boolean", "Float"], "answer": 2 }
+        { "question": "Which keyboard shortcut toggles absolute and relative references ($)?", "options": ["F2", "F4", "F9", "Alt + Enter"], "answer": 1 },
+        { "question": "If you copy the formula =$A1 to the right, what does it become?", "options": ["=$A1", "=$B1", "=$A2", "=$B2"], "answer": 0 }
       ]
     },
     {
-      "id": "operators-strings",
-      "title": "2. Operators & String Operations",
-      "content": "<p>Strings are heavily used in Python and come with powerful built-in methods.</p><ul><li><strong>F-Strings:</strong> Prefix a string with <code>f</code> to embed variables directly using <code>{}</code>.</li><li><strong>String Methods:</strong> Use <code>.strip()</code> to remove whitespace, <code>.split()</code> to turn a string into a list, and <code>.replace()</code> to swap characters.</li><li><strong>Logical Operators:</strong> <code>and</code>, <code>or</code>, <code>not</code> combine conditional statements.</li><li><strong>Membership Operators:</strong> <code>in</code>, <code>not in</code> check if a sequence is present in an object.</li></ul>",
-      "code": "# F-Strings\nname = \"Bob\"\nprint(f\"Hello {name}, 5 + 5 is {5+5}\")\n\n# String Methods\ntext = \"  Python is awesome!  \"\nclean_text = text.strip()\nprint(clean_text.replace(\"awesome\", \"powerful\"))\n\n# Membership & Logical\nprint(\"Py\" in text and len(name) > 2)",
-      "output": "Hello Bob, 5 + 5 is 10\nPython is powerful!\nTrue",
+      "id": "logical-functions",
+      "title": "2. Logical Functions (IF, AND, OR, IFS)",
+      "content": "<p>Logical functions evaluate conditions and return specific outputs. They are heavily tested in data screening tasks.</p><ul><li><strong>IF:</strong> <code>=IF(logical_test, value_if_true, value_if_false)</code></li><li><strong>AND / OR:</strong> Used inside an IF statement to test multiple conditions. <code>AND()</code> requires ALL conditions to be true. <code>OR()</code> requires at least ONE condition to be true.</li><li><strong>IFS (Excel 2019+):</strong> Replaces messy \"Nested IFs\" by checking multiple conditions sequentially.</li></ul>",
+      "code": "# Basic IF\n=IF(B2>=60, \"Pass\", \"Fail\")\n\n# Nested with AND\n=IF(AND(B2>=60, C2>=90), \"High Pass\", \"Standard\")\n\n# Using IFS (modern approach)\n=IFS(B2>=90, \"A\", B2>=80, \"B\", B2>=70, \"C\", TRUE, \"F\")",
+      "output": "Pass\nHigh Pass\nB",
       "coding_questions": [
-        "Write a program to reverse a string using slicing `[::-1]`.",
-        "Take a sentence 'Data Science is fun' and use `.split()` to convert it into a list of words.",
-        "Use an f-string to print 'My name is [Name] and I am [Age] years old'."
+        "Write a formula that returns 'Bonus' if Sales > 10000 AND Rating >= 4, otherwise return 'No Bonus'.",
+        "Use the IFS function to categorize ages: <18 as 'Minor', 18-64 as 'Adult', and >=65 as 'Senior'."
       ],
       "quiz": [
-        { "question": "What is the output of 10 // 3?", "options": ["3.33", "3", "1", "0"], "answer": 1 },
-        { "question": "Which method removes whitespace from the beginning and end of a string?", "options": ["remove()", "strip()", "trim()", "clean()"], "answer": 1 },
-        { "question": "What does 'a' in 'apple' evaluate to?", "options": ["True", "False", "Error", "None"], "answer": 0 }
+        { "question": "What is the maximum number of IF functions you can nest in modern Excel?", "options": ["7", "16", "64", "Unlimited"], "answer": 2 },
+        { "question": "What does =IF(OR(1=1, 2=3), \"Yes\", \"No\") return?", "options": ["Yes", "No", "Error", "FALSE"], "answer": 0 }
       ]
     },
     {
-      "id": "lists-tuples",
-      "title": "3. Lists & Tuples",
-      "content": "<p>Lists and Tuples are fundamental data structures.</p><ul><li><strong>List Methods:</strong> <code>.insert(index, item)</code> adds at a specific position. <code>.pop()</code> removes and returns the last item. <code>.sort()</code> sorts the list in place.</li><li><strong>Nested Lists:</strong> Lists can contain other lists, creating matrices (2D arrays).</li><li><strong>Tuple Packing/Unpacking:</strong> You can assign a tuple of variables to a tuple of values instantly (e.g., <code>a, b = (1, 2)</code>).</li></ul>",
-      "code": "# List Operations\nnos = [3, 1, 4, 2]\nnos.sort()\nnos.insert(1, 99)\npopped = nos.pop()\nprint(f\"List: {nos}, Popped: {popped}\")\n\n# Tuple Unpacking\nperson = (\"Alice\", 25, \"Engineer\")\nname, age, job = person\nprint(f\"{name} is an {job}\")",
-      "output": "List: [1, 99, 2, 3], Popped: 4\nAlice is an Engineer",
+      "id": "lookup-reference",
+      "title": "3. Lookup Functions (VLOOKUP, INDEX-MATCH)",
+      "content": "<p><strong>The Holy Grail of Excel Interviews.</strong> You MUST master these to pass an Excel assessment.</p><ul><li><strong>VLOOKUP:</strong> <code>=VLOOKUP(lookup_value, table_array, col_index, [range_lookup])</code>. Always use FALSE or 0 for exact match. Limitation: It can only search from left to right.</li><li><strong>INDEX-MATCH:</strong> The professional alternative. <code>MATCH()</code> finds the row number, <code>INDEX()</code> returns the value from that row. It can search left, right, up, or down dynamically.</li><li><strong>XLOOKUP:</strong> The modern replacement. <code>=XLOOKUP(lookup_value, lookup_array, return_array)</code>.</li></ul>",
+      "code": "# VLOOKUP (Exact Match)\n=VLOOKUP(\"EMP102\", A2:D100, 3, FALSE)\n\n# INDEX & MATCH (Dynamic & robust against column insertions)\n=INDEX(C2:C100, MATCH(\"EMP102\", A2:A100, 0))\n\n# XLOOKUP (With built-in 'if not found' handler)\n=XLOOKUP(\"EMP102\", A2:A100, C2:C100, \"Not Found\")",
+      "output": "Returns Employee Name from Column 3.\nReturns exact match regardless of column order.",
       "coding_questions": [
-        "Create a list of 5 numbers, sort it in descending order, and print it.",
-        "Given the nested list `matrix = [[1, 2], [3, 4]]`, extract and print the number 4.",
-        "Unpack the tuple `colors = ('red', 'green', 'blue')` into three variables and print the second one."
+        "Write a VLOOKUP formula to find the Price (3rd column) of a Product ID located in cell G2 from the table A1:D50.",
+        "Write an INDEX-MATCH formula to find a 'Manager Name' (Column A) based on an 'Employee ID' (Column D) (A left-lookup task)."
       ],
       "quiz": [
-        { "question": "Which method adds an element to a specific index in a list?", "options": ["append()", "push()", "insert()", "add()"], "answer": 2 },
-        { "question": "Are Python lists mutable?", "options": ["Yes", "No", "Only if empty", "Depends on OS"], "answer": 0 },
-        { "question": "What happens if you try to change a tuple element (e.g., t[0] = 1)?", "options": ["It changes successfully", "TypeError", "SyntaxError", "It creates a new tuple"], "answer": 1 }
+        { "question": "What happens if you use TRUE for the 4th argument in VLOOKUP?", "options": ["It forces an exact match", "It returns an approximate match (requires sorted data)", "It searches right-to-left", "It throws an error"], "answer": 1 },
+        { "question": "Why do analysts prefer INDEX-MATCH over VLOOKUP?", "options": ["It calculates faster", "It doesn't break if you insert a new column", "It can search left to right", "All of the above"], "answer": 3 }
       ]
     },
     {
-      "id": "sets-dicts",
-      "title": "4. Sets, Dictionaries & Nested Structures",
-      "content": "<p><strong>Sets</strong> handle mathematical set operations (union, intersection). <strong>Dictionaries</strong> provide extremely fast key lookups.</p><ul><li><strong>Set Operations:</strong> Use <code>|</code> for Union (combines sets) and <code>&amp;</code> for Intersection (finds common items).</li><li><strong>Dictionary Methods:</strong> <code>.keys()</code> gets all keys, <code>.values()</code> gets all values, <code>.items()</code> gets key-value pairs. <code>.get(key, default)</code> safely fetches a value without throwing an error if it doesn't exist.</li></ul>",
-      "code": "# Sets\nset_A = {1, 2, 3}\nset_B = {3, 4, 5}\nprint(\"Union:\", set_A | set_B)\nprint(\"Intersection:\", set_A & set_B)\n\n# Dictionaries\ncar = {\"brand\": \"Ford\", \"model\": \"Mustang\"}\nprint(car.get(\"year\", \"Year not found\"))\n\nfor key, val in car.items():\n    print(f\"{key}: {val}\")",
-      "output": "Union: {1, 2, 3, 4, 5}\nIntersection: {3}\nYear not found\nbrand: Ford\nmodel: Mustang",
+      "id": "conditional-math",
+      "title": "4. Data Aggregation (SUMIFS, COUNTIFS)",
+      "content": "<p>Used to summarize data based on specific conditions. Essential for building dashboards.</p><ul><li><strong>COUNTIFS:</strong> Counts rows that meet one or more criteria.</li><li><strong>SUMIFS:</strong> Adds values in a range that meet one or more criteria. <strong>Syntax Rule:</strong> In SUMIFS, the <em>Sum_Range</em> is always the FIRST argument.</li><li><strong>Wildcards:</strong> Use <code>*</code> (any number of characters) or <code>?</code> (single character) in your criteria to match partial text (e.g., \"*Apple*\" matches \"Red Apple Inc\").</li></ul>",
+      "code": "# COUNTIFS\n=COUNTIFS(Region_Col, \"North\", Sales_Col, \">5000\")\n\n# SUMIFS (Sum Range is FIRST)\n=SUMIFS(Revenue_Col, Region_Col, \"South\", Status_Col, \"Completed\")\n\n# Using Wildcards\n=SUMIFS(Revenue_Col, Item_Col, \"*Shirt*\")",
+      "output": "Counts rows where North sales > 5000.\nSums Revenue where Region is South AND Status is Completed.",
       "coding_questions": [
-        "Find the common elements between `list1 = [1,2,3,4]` and `list2 = [3,4,5,6]` by converting them to sets.",
-        "Create a dictionary of a student's grades. Safely try to access their 'Math' grade using `.get()`, defaulting to 0 if it doesn't exist.",
-        "Iterate through a dictionary and print only the keys."
+        "Write a SUMIFS formula to sum the 'Profit' column where 'Year' is 2023 and 'Department' is 'HR'.",
+        "Write a COUNTIFS formula to count how many employees have 'Manager' anywhere in their job title."
       ],
       "quiz": [
-        { "question": "Which collection does not allow duplicate members?", "options": ["List", "Tuple", "Dictionary", "Set"], "answer": 3 },
-        { "question": "What does the dictionary .items() method return?", "options": ["Only keys", "Only values", "Key-value tuples", "A list of strings"], "answer": 2 },
-        { "question": "Which operator is used for Set Intersection?", "options": ["|", "&", "+", "-"], "answer": 1 }
+        { "question": "In the SUMIFS function, where does the range you want to sum go?", "options": ["The first argument", "The second argument", "The last argument", "It doesn't matter"], "answer": 0 },
+        { "question": "Which wildcard character represents exactly ONE missing character in Excel?", "options": ["*", "%", "?", "#"], "answer": 2 }
       ]
     },
     {
-      "id": "conditions-loops",
-      "title": "5. Conditions & Loops",
-      "content": "<p>Control flow structures allow your program to make decisions and repeat tasks.</p><ul><li><strong>Conditional Statements (if/elif/else):</strong> <code>if</code> evaluates a condition. <code>elif</code> (else if) checks multiple conditions sequentially. <code>else</code> acts as a catch-all if no previous conditions are met.</li><li><strong>Truthiness:</strong> In Python, empty sequences (like <code>[]</code>, <code>\"\"</code>), <code>0</code>, and <code>None</code> evaluate to <code>False</code>. Almost everything else evaluates to <code>True</code>.</li><li><strong>For Loops:</strong> Designed to iterate over a sequence (like a list, tuple, dictionary, or string). It runs a block of code for each item automatically.</li><li><strong>While Loops:</strong> Executes a block of code continuously as long as a specified condition remains <code>True</code>. Be careful of infinite loops!</li><li><strong>Nested Loops:</strong> A loop inside a loop. The \"inner loop\" will be fully executed one time for every single iteration of the \"outer loop\".</li><li><strong>Break & Continue:</strong> <code>break</code> exits the loop entirely. <code>continue</code> skips the rest of the current iteration and instantly moves to the next one.</li><li><strong>While-Else:</strong> Python loops can have an <code>else</code> block that triggers only if the loop finishes normally <em>without</em> hitting a <code>break</code> statement.</li></ul>",
-      "code": "# If/Elif/Else & Truthiness\nname = \"\"\nif not name:\n    print(\"String is empty! (Falsy)\")\n\n# Nested Loops\nfor i in range(1, 3):       # Outer loop\n    for j in ['A', 'B']:    # Inner loop\n        print(f\"{i}{j}\")\n\n# Continue and Break\nfor i in range(5):\n    if i == 1:\n        continue # Skips 1\n    if i == 3:\n        break    # Stops at 3\n    print(f\"Loop: {i}\")",
-      "output": "String is empty! (Falsy)\n1A\n1B\n2A\n2B\nLoop: 0\nLoop: 2",
+      "id": "text-functions",
+      "title": "5. Text Manipulation & Data Cleaning",
+      "content": "<p>\"Data Cleansing\" is a standard interview test. You must know how to clean messy data.</p><ul><li><strong>TRIM & PROPER:</strong> <code>TRIM()</code> removes accidental leading/trailing spaces. <code>PROPER()</code> capitalizes the first letter of each word.</li><li><strong>LEFT, RIGHT, MID:</strong> Extracts a specific number of characters from a text string.</li><li><strong>FIND & SEARCH:</strong> Locates the position of a character. <code>SEARCH()</code> is case-insensitive, <code>FIND()</code> is case-sensitive.</li><li><strong>TEXTJOIN:</strong> Better than CONCATENATE because it allows you to specify a delimiter (like a comma) and ignore empty cells.</li></ul>",
+      "code": "# Clean Messy Data\n=TRIM(PROPER(A2))\n\n# Extract first 3 characters\n=LEFT(A2, 3)\n\n# Extract Username from Email (Dynamic extraction)\n=LEFT(A2, FIND(\"@\", A2) - 1)\n\n# Combine text\n=TEXTJOIN(\", \", TRUE, A2, B2, C2)",
+      "output": "john doe  -> John Doe\njohn@mail.com -> john\nApple, Banana, Cherry",
       "coding_questions": [
-        "Write a loop that prints numbers 1 to 10, but skips numbers divisible by 3 using `continue`.",
-        "Create a `while` loop that asks for user input (mock it with a variable) and breaks when the input is 'exit'."
+        "Write a formula to extract the domain name (everything AFTER the '@') from an email address in cell A2.",
+        "Write a formula that joins First Name (A2) and Last Name (B2) with a space in between, wrapped in TRIM to prevent double spaces."
       ],
       "quiz": [
-        { "question": "Which keyword stops a loop completely?", "options": ["stop", "break", "continue", "exit"], "answer": 1 },
-        { "question": "What does 'continue' do in a loop?", "options": ["Stops the loop", "Restarts the script", "Skips to the next iteration", "Pauses execution"], "answer": 2 },
-        { "question": "Which of the following evaluates to False in Python?", "options": ["'False'", "1", "[] (an empty list)", "-1"], "answer": 2 }
+        { "question": "What is the difference between FIND and SEARCH?", "options": ["FIND is case-sensitive, SEARCH is not", "SEARCH is case-sensitive, FIND is not", "FIND only works on numbers", "There is no difference"], "answer": 0 },
+        { "question": "Which function removes extra spaces from text, leaving only single spaces between words?", "options": ["CLEAN", "REMOVE", "TRIM", "STRIP"], "answer": 2 }
       ]
     },
     {
-      "id": "functions",
-      "title": "6. Functions",
-      "content": "<p>Functions organize code into modular blocks.</p><ul><li><strong>Default Arguments:</strong> Provide fallback values for parameters (e.g., <code>def greet(name=\"User\")</code>).</li><li><strong>*args and **kwargs:</strong> <code>*args</code> allows passing a variable number of non-keyword arguments (as a tuple). <code>**kwargs</code> allows passing a variable number of keyword arguments (as a dictionary).</li><li><strong>Variable Scope:</strong> Variables inside a function are <em>local</em>. Use the <code>global</code> keyword to modify a global variable inside a function.</li></ul>",
-      "code": "# *args (Multiple arguments)\ndef add_all(*args):\n    return sum(args)\n\nprint(\"Sum:\", add_all(1, 2, 3, 4))\n\n# **kwargs (Keyword arguments)\ndef profile(**kwargs):\n    for key, val in kwargs.items():\n        print(f\"{key}: {val}\")\n\nprofile(name=\"Alice\", role=\"Admin\")",
-      "output": "Sum: 10\nname: Alice\nrole: Admin",
+      "id": "date-time",
+      "title": "6. Date & Time Functions",
+      "content": "<p>Excel stores dates as serial numbers (Day 1 is Jan 1, 1900). Understanding this solves many date calculation errors.</p><ul><li><strong>TODAY() / NOW():</strong> Returns the current date / current date + time. (Volatile functions that recalculate daily).</li><li><strong>EOMONTH:</strong> Returns the last day of the month, X months in the past or future. Great for financial modeling.</li><li><strong>NETWORKDAYS:</strong> Calculates the number of working days between two dates, automatically excluding weekends and optionally, a list of custom holidays.</li></ul>",
+      "code": "# Current Date\n=TODAY()\n\n# Last day of the CURRENT month\n=EOMONTH(TODAY(), 0)\n\n# Last day of NEXT month\n=EOMONTH(TODAY(), 1)\n\n# Working days between Project Start (A2) and End (B2)\n=NETWORKDAYS(A2, B2, Holidays_Range)",
+      "output": "10/31/2023\n11/30/2023\n14 (working days)",
       "coding_questions": [
-        "Create a function `find_max(*args)` that takes any number of integers and returns the highest one.",
-        "Write a function `build_profile` that accepts a first name, last name, and `**kwargs` for additional info, returning a complete dictionary.",
-        "Demonstrate the difference between a local variable and a global variable in a script."
+        "Write a formula to find the exact date 90 days from today.",
+        "Write a formula to calculate the number of working days a project took, assuming Start Date is in A2, End Date is in B2, and holidays are in Z1:Z10."
       ],
       "quiz": [
-        { "question": "What data structure is used to hold *args?", "options": ["List", "Dictionary", "Tuple", "Set"], "answer": 2 },
-        { "question": "What data structure is used to hold **kwargs?", "options": ["List", "Dictionary", "Tuple", "Set"], "answer": 1 },
-        { "question": "How do you modify a global variable inside a function?", "options": ["Just assign a new value", "Use the 'global' keyword", "Use 'this.variable'", "It is impossible"], "answer": 1 }
+        { "question": "How does Excel store dates behind the scenes?", "options": ["As text strings", "As sequential serial numbers", "As hexadecimal values", "As Unix timestamps"], "answer": 1 },
+        { "question": "Which function gives you both the current date AND the current time?", "options": ["TODAY()", "CURRENT()", "TIME()", "NOW()"], "answer": 3 }
       ]
     },
     {
-      "id": "file-lambda",
-      "title": "7. File Handling, Comprehensions, Lambda",
-      "content": "<p>Advanced data manipulation and file I/O.</p><ul><li><strong>List/Dict Comprehensions:</strong> Pythonic way to generate collections on a single line.</li><li><strong>Map & Filter:</strong> <code>map()</code> applies a function to all items; <code>filter()</code> extracts items that return True for a condition. Often combined with Lambdas.</li><li><strong>Context Managers:</strong> Using <code>with open()</code> ensures the file closes automatically, even if an error occurs. Modes: <code>r</code> (read), <code>w</code> (write), <code>a</code> (append).</li></ul>",
-      "code": "# Dict Comprehension\nsquares_dict = {x: x**2 for x in range(3)}\nprint(\"Dict:\", squares_dict)\n\n# Map and Filter with Lambda\nnums = [1, 2, 3, 4, 5]\nevens = list(filter(lambda x: x % 2 == 0, nums))\ndoubled = list(map(lambda x: x * 2, evens))\nprint(\"Filtered Evens & Doubled:\", doubled)\n\n# File handling syntax (conceptual)\n# with open('data.txt', 'r') as f:\n#     lines = f.readlines()",
-      "output": "Dict: {0: 0, 1: 1, 2: 4}\nFiltered Evens & Doubled: [4, 8]",
+      "id": "pivot-tables",
+      "title": "7. Pivot Tables & Advanced Data Modeling",
+      "content": "<p>Pivot tables summarize hundreds of thousands of rows in seconds. A mandatory skill for any analyst role.</p><ul><li><strong>Best Practices:</strong> Ensure no blank column headers. Convert your data range to an Excel Table (<code>Ctrl+T</code>) first, so the Pivot Table updates automatically when new data is added.</li><li><strong>Grouping:</strong> Right-click a date in a Pivot Table and select 'Group' to instantly summarize by Month, Quarter, or Year.</li><li><strong>Calculated Fields:</strong> Create new formulas INSIDE the pivot table (e.g., <code>= Profit / Revenue</code>) rather than adding columns to the raw data.</li><li><strong>Power Pivot:</strong> Used to handle millions of rows and create relationships between multiple tables (Relational database logic within Excel).</li></ul>",
+      "code": "Steps to create a dynamic Pivot:\n1. Click anywhere in data.\n2. Press Ctrl + T to make a Table.\n3. Insert -> Pivot Table.\n4. Drag 'Region' to Rows.\n5. Drag 'Revenue' to Values.\n6. Insert -> Slicer (Choose Region).",
+      "output": "Interactive, filterable summary dashboard.",
       "coding_questions": [
-        "Write a dictionary comprehension that maps numbers 1-5 to their cubes.",
-        "Use `filter()` and a lambda function to extract all words longer than 4 characters from a list of strings.",
-        "Write a script that appends the text 'New Session Started' to a file named 'log.txt'."
+        "Why is it better to base a Pivot Table on an 'Excel Table' rather than a standard range like A1:D500?",
+        "Explain how to create a Calculated Field in a Pivot Table that calculates 'Commission' as 10% of 'Sales'."
       ],
       "quiz": [
-        { "question": "What is a lambda function?", "options": ["A multi-line function", "An anonymous function", "A class method", "A file handler"], "answer": 1 },
-        { "question": "Which function is used to apply a lambda to every item in a list?", "options": ["filter()", "apply()", "map()", "reduce()"], "answer": 2 },
-        { "question": "Why is it best to use 'with open()' for files?", "options": ["It reads faster", "It auto-closes the file", "It encrypts the data", "It prevents deleting"], "answer": 1 }
+        { "question": "If you update the raw data, does the Pivot Table update automatically?", "options": ["Yes, instantly", "No, you must right-click and 'Refresh'", "No, you have to recreate it", "Only if it is an Excel Table"], "answer": 1 },
+        { "question": "What Excel Add-in is used to relate multiple data tables together like a database?", "options": ["Power Query", "Power Pivot", "Solver", "Goal Seek"], "answer": 1 }
       ]
     },
     {
-      "id": "exception-handling",
-      "title": "8. Exception Handling",
-      "content": "<p>Robust programs handle unexpected errors gracefully.</p><ul><li><strong>Multiple Excepts:</strong> You can catch different exceptions and handle them differently.</li><li><strong>Raise:</strong> Use the <code>raise</code> keyword to intentionally trigger an exception based on your own logic.</li><li><strong>Custom Exceptions:</strong> You can create your own error types by inheriting from the built-in <code>Exception</code> class.</li></ul>",
-      "code": "def check_age(age):\n    if age < 0:\n        raise ValueError(\"Age cannot be negative!\")\n    return age\n\ntry:\n    check_age(-5)\nexcept ValueError as e:\n    print(f\"Caught an error: {e}\")\nexcept TypeError:\n    print(\"Invalid data type!\")\nfinally:\n    print(\"Verification attempt finished.\")",
-      "output": "Caught an error: Age cannot be negative!\nVerification attempt finished.",
+      "id": "dashboards-charts",
+      "title": "8. Dashboards & Advanced Charts",
+      "content": "<p>Visualizing data effectively is key to a corporate presentation.</p><ul><li><strong>Combo Charts:</strong> Used to plot two different types of data on the same chart (e.g., Revenue as Bars, Profit Margin as a Line). Always use a Secondary Axis for the percentage.</li><li><strong>Dynamic Dashboards:</strong> Built by connecting Pivot Charts to <strong>Slicers</strong> and <strong>Timelines</strong>. One slicer can control multiple charts via 'Report Connections'.</li><li><strong>Form Controls:</strong> (Found in the Developer tab) Checkboxes, Radio buttons, and Combo Boxes can be linked to cells to make your dashboard highly interactive without using VBA.</li><li><strong>Sparklines:</strong> Mini charts placed inside a single cell to show a quick trend.</li></ul>",
+      "code": "Steps for a Combo Chart:\n1. Select data -> Insert -> Recommended Charts -> All Charts -> Combo.\n2. Set Series 1 (Revenue) to Clustered Column.\n3. Set Series 2 (Margin) to Line.\n4. CHECK the box for 'Secondary Axis' next to Margin.",
+      "output": "A chart with bars and a trendline, using two different Y-axes.",
       "coding_questions": [
-        "Write a function that divides two numbers. Catch `ZeroDivisionError` and `TypeError` using multiple except blocks.",
-        "Write a script that asks for a password and uses `raise Exception` if the password is less than 6 characters long.",
-        "Create a custom Exception class named `InvalidEmailError` and raise it if an email string doesn't contain an '@'."
+        "How do you connect a single Slicer to multiple Pivot Tables on the same Dashboard sheet?",
+        "Explain when you would use a Secondary Axis in a chart."
       ],
       "quiz": [
-        { "question": "Which keyword manually triggers an exception?", "options": ["throw", "catch", "raise", "error"], "answer": 2 },
-        { "question": "How do you capture the error message into a variable?", "options": ["except Error = e:", "except Error as e:", "catch Error(e):", "except e = Error:"], "answer": 1 },
-        { "question": "Which block executes no matter what?", "options": ["try", "except", "finally", "catch"], "answer": 2 }
+        { "question": "What is a Slicer?", "options": ["A tool to split text", "An interactive visual filter for Pivot Tables and Charts", "A shortcut for deleting rows", "A type of chart"], "answer": 1 },
+        { "question": "Which feature inserts a tiny, cell-sized chart to show a trend?", "options": ["MiniChart", "MicroGraph", "Sparkline", "TrendBox"], "answer": 2 }
       ]
     },
     {
-      "id": "oops",
-      "title": "9. Object-Oriented Programming (OOPS)",
-      "content": "<p>Object-Oriented Programming (OOP) is a paradigm based on the concept of \"objects\", which bundle data (attributes) and behaviors (methods) together. It follows 4 core pillars:</p><ul><li><strong>Classes vs. Objects:</strong> A <code>class</code> is a blueprint or template (e.g., 'Car'). An <code>object</code> is a specific instance created from that blueprint (e.g., 'My Red Toyota').</li><li><strong>The <code>self</code> Parameter:</strong> Represents the specific instance of the class. It binds the attributes with the given arguments and must be the first parameter of any instance method.</li><li><strong>Inheritance:</strong> A way to form new child classes using parent classes that have already been defined. It promotes massive code reusability.</li><li><strong>Encapsulation:</strong> Hiding internal states and requiring all interaction to be performed through an object's methods. In Python, prefixing an attribute with double underscores (<code>__</code>) makes it \"private\", preventing direct external access.</li><li><strong>Abstraction:</strong> Hiding complex underlying implementation details and showing only the essential features of the object to the user.</li><li><strong>Magic/Dunder Methods:</strong> Methods surrounded by double underscores like <code>__init__</code> (constructor, called when creating an object) and <code>__str__</code> (controls what prints when you print the object).</li></ul>",
-      "code": "class BankAccount:\n    bank_name = \"Global Bank\" # Class variable (shared)\n\n    def __init__(self, owner, balance):\n        self.owner = owner       # Public Instance Variable\n        self.__balance = balance # Private Instance Variable\n\n    def __str__(self):\n        return f\"{self.owner}'s Account\"\n\n    def get_balance(self):\n        # Public method to access private data safely\n        return self.__balance\n\nacc = BankAccount(\"Alice\", 1000)\nprint(acc)\nprint(f\"Bank: {BankAccount.bank_name}\")\nprint(\"Balance:\", acc.get_balance())\n# print(acc.__balance) # ERROR: Cannot access private attribute",
-      "output": "Alice's Account\nBank: Global Bank\nBalance: 1000",
+      "id": "vba-macros",
+      "title": "9. VBA & Macros (Excel Codes)",
+      "content": "<p>Visual Basic for Applications (VBA) automates repetitive tasks.</p><ul><li><strong>Macro Recorder:</strong> The easiest way to learn VBA. It records your clicks and translates them into code.</li><li><strong>The Developer Tab:</strong> Must be enabled via Options > Customize Ribbon. Press <code>Alt + F11</code> to open the VBA Editor.</li><li><strong>VBA Syntax Basics:</strong> Code is stored in Modules. Procedures start with <code>Sub</code> and end with <code>End Sub</code>.</li><li><strong>Referencing Cells:</strong> <code>Range(\"A1\").Value = \"Hello\"</code> or <code>Cells(1, 1).Value = \"Hello\"</code>.</li><li><strong>Loops in VBA:</strong> <code>For i = 1 to 10 ... Next i</code> is used to loop through rows automatically.</li></ul>",
+      "code": "Sub ClearData()\n    ' This is a VBA comment\n    ' Clears contents of A1 to A10\n    Range(\"A1:A10\").ClearContents\n    MsgBox \"Data Cleared Successfully!\"\nEnd Sub\n\nSub SimpleLoop()\n    Dim i As Integer\n    For i = 1 To 5\n        Cells(i, 1).Value = \"Test \" & i\n    Next i\nEnd Sub",
+      "output": "A pop-up box says 'Data Cleared Successfully!'.\nCells A1 to A5 are filled with 'Test 1' to 'Test 5'.",
       "coding_questions": [
-        "Create a `Book` class with a `__init__` constructor and a `__str__` method that returns 'Title by Author'.",
-        "Add a private attribute `__salary` to an `Employee` class and create a getter method to access it safely.",
-        "Create a class variable `employee_count` that increments every time the `__init__` method is called."
+        "Write a simple VBA Sub that puts the text 'Approved' into cell B2.",
+        "Explain what a Variable is in VBA and how you declare it using the 'Dim' keyword."
       ],
       "quiz": [
-        { "question": "What is the primary function used to initialize class properties?", "options": ["__start__", "__init__", "__main__", "init()"], "answer": 1 },
-        { "question": "How do you indicate that an attribute should be private in Python?", "options": ["Prefix with 'private'", "Prefix with double underscore '__'", "Suffix with '__'", "Use the @private decorator"], "answer": 1 },
-        { "question": "What method controls how an object is formatted when you use print() on it?", "options": ["__print__", "__text__", "__str__", "__output__"], "answer": 2 }
+        { "question": "What is the keyboard shortcut to open the VBA Editor?", "options": ["Alt + F8", "Alt + F11", "Ctrl + M", "Ctrl + Shift + V"], "answer": 1 },
+        { "question": "What keyword is used to declare a variable in VBA?", "options": ["Var", "Let", "Dim", "Set"], "answer": 2 }
       ]
     },
     {
-      "id": "polymorphism-json-apis",
-      "title": "10. Polymorphism, JSON & APIs",
-      "content": "<p>Integrating systems and modeling flexible behaviors.</p><ul><li><strong>Polymorphism (Method Overriding):</strong> A child class can provide a specific implementation of a method that is already provided by its parent.</li><li><strong>JSON:</strong> <code>json.loads()</code> parses a JSON string to a Python Dict. <code>json.dumps()</code> converts a Dict back to a JSON string.</li><li><strong>APIs:</strong> The external <code>requests</code> library is the standard for making HTTP GET/POST requests to REST APIs.</li></ul>",
-      "code": "import json\n\n# Polymorphism Example\nclass Bird:\n    def speak(self): return \"Chirp\"\nclass Duck(Bird):\n    def speak(self): return \"Quack\" # Overriding\n\nanimals = [Bird(), Duck()]\nfor a in animals:\n    print(a.speak())\n\n# JSON Dumping (Dict to String)\nuser = {\"name\": \"Alice\", \"active\": True}\njson_str = json.dumps(user, indent=2)\nprint(\"\\nJSON Output:\\n\" + json_str)",
-      "output": "Chirp\nQuack\n\nJSON Output:\n{\n  \"name\": \"Alice\",\n  \"active\": true\n}",
+      "id": "advanced-tools",
+      "title": "10. Advanced Tools (Goal Seek, Power Query)",
+      "content": "<p>These tools handle data modeling and complex problem-solving.</p><ul><li><strong>Goal Seek:</strong> Works backward. If you know the result you want a formula to produce, Goal Seek finds the input value required to achieve it.</li><li><strong>Power Query:</strong> The ultimate data cleaning tool. Allows you to import data from folders, websites, or SQL databases, clean it step-by-step, and load it into Excel. It saves the steps, so next time you just hit 'Refresh'.</li><li><strong>Remove Duplicates:</strong> Instantly deletes identical rows based on selected columns.</li></ul>",
+      "code": "Goal Seek Example:\n1. Data Tab -> What-If Analysis -> Goal Seek\n2. Set Cell: [Formula Cell]\n3. To Value: [Target Number]\n4. By changing cell: [Input Cell]\n\nPower Query M-Code (Conceptual):\n= Table.SelectRows(Source, each ([Status] = \"Active\"))",
+      "output": "Excel recalculates or cleans data instantly.",
       "coding_questions": [
-        "Create a parent class `Shape` with a method `area()`. Create two child classes `Square` and `Circle` that override `area()` with their specific formulas.",
-        "Create a complex Python dictionary containing a list, and convert it to a formatted JSON string using `json.dumps(data, indent=4)`.",
-        "Write a theoretical function that uses `requests.get('url')` and returns the `.json()` response of the request."
+        "Explain a scenario in financial modeling where you would use Goal Seek.",
+        "Why is Power Query superior to manually cleaning data every month?"
       ],
       "quiz": [
-        { "question": "Which function converts a Python Dictionary into a JSON String?", "options": ["json.parse()", "json.loads()", "json.dumps()", "json.stringify()"], "answer": 2 },
-        { "question": "What does Polymorphism allow you to do?", "options": ["Hide variables", "Use the same method name for different types", "Import external libraries", "Parse API data"], "answer": 1 },
-        { "question": "Which external library is standard for making API calls in Python?", "options": ["http", "fetch", "requests", "api_caller"], "answer": 2 }
+        { "question": "Which tool calculates backward to find a specific input needed to reach a target output?", "options": ["Scenario Manager", "Data Table", "Goal Seek", "Solver"], "answer": 2 },
+        { "question": "In Power Query, what happens if you receive a new monthly dataset?", "options": ["You must rewrite the steps", "You just click Refresh", "You have to use VLOOKUP", "You write VBA code"], "answer": 1 }
+      ]
+    },
+    {
+      "id": "shortcuts",
+      "title": "11. Keyboard Shortcuts & Best Practices",
+      "content": "<p>During a live interview, relying entirely on the mouse looks unprofessional. Memorize these to prove you are an advanced user.</p><ul><li><strong>Navigation:</strong> <code>Ctrl + Arrow Keys</code> jumps to the edge of data. <code>Ctrl + Shift + Arrow</code> highlights data instantly.</li><li><strong>Formatting:</strong> <code>Ctrl + 1</code> opens the Format Cells dialog. <code>Ctrl + Shift + $</code> applies currency format. <code>Ctrl + Shift + %</code> applies percentage.</li><li><strong>Actions:</strong> <code>Alt + =</code> instantly AutoSums a column. <code>Ctrl + T</code> converts data to a Table. <code>F4</code> repeats your last action OR locks cell references in formulas.</li></ul>",
+      "code": "# Essential Analyst Shortcuts\nCtrl + Arrow   = Jump to bottom of dataset\nAlt + =        = AutoSum\nCtrl + PageUp  = Switch worksheet tabs\nCtrl + ;       = Insert current date hardcode\nF2             = Enter cell edit mode\nCtrl + Shift + L = Toggle Filters",
+      "output": "Massively increased speed and efficiency.",
+      "coding_questions": [
+        "You need to sum a column of 10,000 numbers. How do you do it in 2 seconds using only the keyboard?",
+        "What is the difference between pressing `Enter` and `Alt + Enter` when typing in a cell?"
+      ],
+      "quiz": [
+        { "question": "What is the shortcut to apply the Currency format?", "options": ["Ctrl + C", "Ctrl + Shift + $", "Alt + C", "Ctrl + 4"], "answer": 1 },
+        { "question": "What shortcut automatically creates a dynamic Excel Table?", "options": ["Ctrl + D", "Ctrl + T", "Alt + T", "Ctrl + E"], "answer": 1 }
       ]
     }
   ],
   "assessment": [
-    { "question": "Which of these is NOT a core Python data type?", "options": ["List", "Dictionary", "Tuple", "Class"], "answer": 3 },
-    { "question": "What is the output of print(2 ** 3)?", "options": ["6", "8", "9", "Error"], "answer": 1 },
-    { "question": "Which method adds an item to the end of a list?", "options": ["add()", "insert()", "append()", "extend()"], "answer": 2 },
-    { "question": "What does JSON.loads() do?", "options": ["Loads a file", "Converts Python object to JSON string", "Converts JSON string to Python dictionary", "Installs a library"], "answer": 2 },
-    { "question": "Which keyword handles exceptions?", "options": ["catch", "except", "error", "handle"], "answer": 1 },
-    { "question": "What does the 'continue' keyword do inside a loop?", "options": ["Stops the program completely", "Exits the loop immediately", "Skips the rest of the current iteration", "Restarts the loop from 0"], "answer": 2 },
-    { "question": "Which bracket type is used to define a Dictionary?", "options": ["()", "[]", "{}", "<>"], "answer": 2 },
-    { "question": "What is the purpose of the __init__ method in a class?", "options": ["To print the object", "To initialize object attributes", "To delete the object", "To import a module"], "answer": 1 },
-    { "question": "Which symbol is used for an f-string?", "options": ["$string", "f\"string\"", "&string", "@string"], "answer": 1 },
-    { "question": "How do you open a file for appending?", "options": ["open('file.txt', 'r')", "open('file.txt', 'a')", "open('file.txt', 'w')", "open('file.txt', 'add')"], "answer": 1 }
+    { "question": "If you want to lock the ROW but let the COLUMN change when dragging, which is correct?", "options": ["$A$1", "$A1", "A$1", "A1"], "answer": 2 },
+    { "question": "Which argument in VLOOKUP defines whether you want an exact or approximate match?", "options": ["The 1st", "The 2nd", "The 3rd", "The 4th"], "answer": 3 },
+    { "question": "In SUMIFS, which range must be selected first?", "options": ["The Criteria Range", "The Sum Range", "The Output Range", "It does not matter"], "answer": 1 },
+    { "question": "Which function finds the position of a specific character within a text string?", "options": ["MID", "LEFT", "SEARCH", "TRIM"], "answer": 2 },
+    { "question": "How does Excel interpret the date January 1, 1900?", "options": ["As -1", "As 0", "As 1", "As Text"], "answer": 2 },
+    { "question": "What must you click to group dates by Month and Year in a Pivot Table?", "options": ["Data Validation", "Right-click the date field -> Group", "Insert Slicer", "Calculated Field"], "answer": 1 },
+    { "question": "What does the shortcut 'Alt + =' do?", "options": ["Opens the formula bar", "Inserts an equals sign", "AutoSums the adjacent range", "Toggles absolute referencing"], "answer": 2 },
+    { "question": "Which combination of functions is dynamically superior to VLOOKUP?", "options": ["INDEX and MATCH", "HLOOKUP and MATCH", "OFFSET and MATCH", "IF and AND"], "answer": 0 },
+    { "question": "To force a cell to only accept Dates between 2023 and 2024, what feature do you use?", "options": ["Conditional Formatting", "Protect Sheet", "Data Validation", "Custom Formatting"], "answer": 2 },
+    { "question": "What will =IF(OR(FALSE, TRUE, FALSE), 1, 0) return?", "options": ["0", "1", "FALSE", "Error"], "answer": 1 },
+    { "question": "Which wildcard replaces exactly ONE character in a criteria search?", "options": ["*", "?", "~", "#"], "answer": 1 },
+    { "question": "Which function allows you to evaluate multiple conditions without nesting IF statements?", "options": ["CHOOSE", "IFS", "SWITCH", "AND"], "answer": 1 },
+    { "question": "How do you connect a Slicer to multiple Pivot Tables?", "options": ["Right-click Slicer -> Report Connections", "Data Tab -> Link", "It cannot be done", "VBA Macro only"], "answer": 0 },
+    { "question": "In a Combo Chart, why do we use a Secondary Axis?", "options": ["To make the chart 3D", "To plot numbers with vastly different scales", "To change the colors", "To add a second title"], "answer": 1 },
+    { "question": "What does the 'F4' key do while editing a formula?", "options": ["Closes Excel", "Cycles through absolute/relative references", "Opens the help menu", "Deletes the row"], "answer": 1 },
+    { "question": "Which function returns the last day of the current month?", "options": ["ENDMONTH()", "EOMONTH()", "LASTDAY()", "MONTH()"], "answer": 1 },
+    { "question": "What is the output of =TRIM(\"  Hello  World  \")?", "options": ["HelloWorld", "Hello  World", "Hello World", "Error"], "answer": 2 },
+    { "question": "What is the best feature to clean data imported from a web database monthly?", "options": ["VLOOKUP", "Power Query", "Flash Fill", "Macros"], "answer": 1 },
+    { "question": "How is a VBA sub-procedure ended?", "options": ["Stop Sub", "Exit Sub", "End Sub", "Close Sub"], "answer": 2 },
+    { "question": "What keyword declares a variable in VBA?", "options": ["Let", "Var", "Set", "Dim"], "answer": 3 },
+    { "question": "What does Ctrl + Shift + L do?", "options": ["Opens formatting", "Toggles filters on/off", "Creates a table", "Inserts a link"], "answer": 1 },
+    { "question": "Which function computes the number of working days between two dates?", "options": ["DAYS", "WORKDAYS", "NETWORKDAYS", "DATEDIF"], "answer": 2 },
+    { "question": "What does the 'Values' area of a Pivot Table default to for text data?", "options": ["Sum", "Average", "Count", "Max"], "answer": 2 },
+    { "question": "What does XLOOKUP have that VLOOKUP does not have built-in?", "options": ["If Not Found handler", "Right-to-Left lookup", "Search last to first", "All of the above"], "answer": 3 },
+    { "question": "Which formula joins text from multiple cells and allows you to specify a delimiter?", "options": ["CONCATENATE", "TEXTJOIN", "JOIN", "MERGE"], "answer": 1 },
+    { "question": "How do you start a new line of text within the SAME cell?", "options": ["Enter", "Shift + Enter", "Alt + Enter", "Ctrl + Enter"], "answer": 2 },
+    { "question": "What feature allows you to highlight cells that contain duplicates?", "options": ["Data Validation", "Find & Select", "Conditional Formatting", "Goal Seek"], "answer": 2 },
+    { "question": "What is the shortcut to enter the current date into a cell?", "options": ["Ctrl + ;", "Ctrl + :", "Alt + D", "Shift + D"], "answer": 0 },
+    { "question": "Which formula counts the number of cells containing numbers?", "options": ["COUNT", "COUNTA", "COUNTIF", "COUNTBLANK"], "answer": 0 },
+    { "question": "Which formula counts the number of non-empty cells?", "options": ["COUNT", "COUNTA", "COUNTIF", "COUNTNUM"], "answer": 1 },
+    { "question": "To reference cell A1 in 'Sheet2', how is it written?", "options": ["Sheet2!A1", "Sheet2.A1", "Sheet2:A1", "'Sheet2, A1'"], "answer": 0 },
+    { "question": "What happens if a VLOOKUP formula cannot find the lookup value and has no error handler?", "options": ["Returns 0", "Returns FALSE", "Returns #N/A", "Returns #REF!"], "answer": 2 },
+    { "question": "Which of these is a Volatile function that slows down large workbooks?", "options": ["INDEX", "MATCH", "OFFSET", "VLOOKUP"], "answer": 2 },
+    { "question": "What is the result of =PROPER(\"john DOE\")?", "options": ["JOHN DOE", "john doe", "John doe", "John Doe"], "answer": 3 },
+    { "question": "Which tool calculates backward to find a specific input?", "options": ["Scenario Manager", "Goal Seek", "Solver", "Data Table"], "answer": 1 },
+    { "question": "What does the shortcut Ctrl + 1 do?", "options": ["Makes text bold", "Opens Format Cells dialog", "Creates a chart", "Saves the file"], "answer": 1 },
+    { "question": "In VBA, what does 'Range(\"A1\").Value = 5' do?", "options": ["Checks if A1 is 5", "Sets cell A1 to 5", "Adds 5 to A1", "Deletes A1"], "answer": 1 },
+    { "question": "Which chart type is best for showing a trend over time?", "options": ["Pie Chart", "Column Chart", "Line Chart", "Scatter Plot"], "answer": 2 },
+    { "question": "What does the error #REF! mean?", "options": ["Invalid reference", "Value not available", "Divide by zero", "Wrong name"], "answer": 0 },
+    { "question": "What does the error #DIV/0! mean?", "options": ["Value not available", "Dividing by zero", "Wrong reference", "Name error"], "answer": 1 },
+    { "question": "What is the maximum number of rows in a modern Excel worksheet?", "options": ["65,536", "1,048,576", "2,097,152", "Unlimited"], "answer": 1 },
+    { "question": "How do you quickly select the entire column of data you are currently in?", "options": ["Ctrl + Space", "Shift + Space", "Alt + Space", "Ctrl + A"], "answer": 0 },
+    { "question": "How do you quickly select the entire row of data you are currently in?", "options": ["Ctrl + Space", "Shift + Space", "Alt + Space", "Ctrl + A"], "answer": 1 },
+    { "question": "What is the file extension for a Macro-Enabled Excel Workbook?", "options": [".xlsx", ".xlsm", ".xlsb", ".xls"], "answer": 1 },
+    { "question": "Which function extracts characters from the middle of a text string?", "options": ["CENTER", "MIDDLE", "MID", "EXTRACT"], "answer": 2 },
+    { "question": "In a Pivot Table, which area allows you to display data as a percentage of the column total?", "options": ["Filters", "Rows", "Columns", "Values (Value Field Settings)"], "answer": 3 },
+    { "question": "What is a 'Sparkline'?", "options": ["A line chart for electricity", "A small chart in a single cell", "A formatting style", "A macro button"], "answer": 1 },
+    { "question": "Which tab contains the option to insert a Checkbox form control?", "options": ["Insert", "Data", "Developer", "View"], "answer": 2 },
+    { "question": "What is the syntax for an exact match in the MATCH function?", "options": ["1", "0", "-1", "TRUE"], "answer": 1 },
+    { "question": "What is the output of =LEN(\"Data\")?", "options": ["4", "3", "5", "Error"], "answer": 0 }
   ]
 }
