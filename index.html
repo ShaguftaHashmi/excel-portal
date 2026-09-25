@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Master Learning Portal</title>
+    <title>Advanced Excel Master Portal</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Header Section -->
     <header>
-        <div class="logo"><i class="fa-brands fa-python"></i> Python Portal</div>
+        <div class="logo"><i class="fa-solid fa-file-excel"></i> Excel Portal</div>
         <div class="search-bar">
             <i class="fa-solid fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Search Python topics...">
+            <input type="text" id="searchInput" placeholder="Search Excel topics (e.g. VLOOKUP)...">
         </div>
         <div class="header-controls">
             <button id="themeToggle"><i class="fa-solid fa-moon"></i></button>
@@ -40,31 +40,31 @@
         <!-- Main Content Area -->
         <main id="mainContent">
             <div id="contentArea">
-                <h1 id="topicTitle">Welcome to Python Master</h1>
-                <div id="topicNotes">Select a topic from the left menu to start learning.</div>
+                <h1 id="topicTitle">Welcome to Advanced Excel Master</h1>
+                <div id="topicNotes">Select a topic from the left menu to start preparing for your interview.</div>
                 
                 <!-- Code & Syntax Area -->
                 <div id="codeSection" style="display: none;">
                     <div class="code-header">
-                        <span><i class="fa-solid fa-code"></i> Syntax & Example</span>
+                        <span><i class="fa-solid fa-calculator"></i> Formula & Example</span>
                         <button id="copyCodeBtn"><i class="fa-regular fa-copy"></i> Copy</button>
                     </div>
                     <pre><code id="topicCode"></code></pre>
                     <div class="output-box">
-                        <strong>Output:</strong>
+                        <strong>Output / Result:</strong>
                         <div id="topicOutput"></div>
                     </div>
                 </div>
 
                 <!-- Coding Questions Area -->
                 <div id="codingQuestionsSection" style="display: none;">
-                    <h3><i class="fa-solid fa-laptop-code"></i> Coding Questions to Try</h3>
+                    <h3><i class="fa-solid fa-laptop-code"></i> Interview Scenarios to Try</h3>
                     <div id="codingQuestionsContainer"></div>
                 </div>
 
                 <!-- MCQ Quiz Area -->
                 <div id="quizSection" style="display: none;">
-                    <h3><i class="fa-solid fa-clipboard-question"></i> MCQ Quiz</h3>
+                    <h3><i class="fa-solid fa-clipboard-question"></i> Concept Quiz</h3>
                     <div id="quizContainer"></div>
                     <div id="topicScore" class="score-display"></div>
                 </div>
